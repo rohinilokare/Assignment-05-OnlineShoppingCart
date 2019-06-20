@@ -5,7 +5,6 @@ class Cart
   	@show_cart=CSV.read("file.csv")
 	end
 
-
 	def show_cart
 		for data in @show_cart
 			puts data[0]+"  "+data[1]+"  "+data[2]+"  "+data[3]
