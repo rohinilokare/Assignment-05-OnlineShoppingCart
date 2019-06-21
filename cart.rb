@@ -2,32 +2,67 @@ require 'csv'
 class Cart
 
 	def initialize()
-		@show_cart=CSV.read("cart1.csv")
+		csv1 = CSV.read("cart2.csv")
+		@cart_data = Array.new
+		i = 0
+		attrributes = []
+		csv1.each do |row|
+			if i==0
+				for element in row
+				  attrributes.push(element)
+				end
+			i = i + 1
+			else
+				item = Hash.new
+				j = 0
+				for element in row
+					item[attrributes[j]] = element
+					j = j+1
+				end
+				@cart_data.push(item)
+			end
+	  end
 	end
 
+	def get_data
+		return @cart_data
+  	end
 
 	def show_cart
-		puts 'PRODUCT_ID      PRODUCT_NAME      QUANTITY      PRICE/PRODUCT         '
-		for data in @show_cart
-			puts data[0]+"  "+data[1]+"  "+data[2]+"  "+data[3]
+		puts '**************************************************'
+		cartdata = get_data
+			puts 'PRODUCT_ID    PRODUCT_NAME    QUANTITY    PRICE/PRODUCT     '
+		for item in cartdata
+			puts item['PRODUCT_ID'] +"   "+ item['PRODUCT_NAME'] +"    "+item['QUANTITY'] +"    "+item['PRICE/PRODUCT']  
 		end
 	end
 
 	def bill
+		cartdata = get_data
 		@bill= 0.0
-		for data in @show_cart
-			product_id = data[0]
-			x = Float(data[2])
-			y = Float(data[3])
-			@bill = x*y
-		print 'total bill for Product ID '+product_id+', is :'
+		for item in cartdata
+			@bill = item['QUANTITY'].to_f * item['PRICE/PRODUCT'].to_f
+		print 'total bill for Product ID '+item['PRODUCT_ID']+', is :'
 		puts @bill 
 		end
 	end
 
 	def remove_item(id)
-			puts 'hi'
+		cartdata = get_data
+		puts 'in remove'
+			CSV.open("cart2.csv","wb") do |inputcsv|
+			inputcsv << ['PRODUCT_ID','PRODUCT_NAME','QUANTITY','PRICE/PRODUCT']
+			for item in cartdata
+			  if item['PRODUCT_ID'].to_i == id.to_i
+			  	next
+				else
+					inputcsv << [item['PRODUCT_ID'],item['PRODUCT_NAME'],item['QUANTITY'],item['PRICE/PRODUCT']]
+				end
+			end
+		end
 	end
-		
 
 end
+
+cart = Cart.new
+
