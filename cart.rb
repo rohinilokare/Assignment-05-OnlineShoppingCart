@@ -2,7 +2,7 @@ require 'csv'
 class Cart
 
 	def initialize()
-		@show_cart=CSV.read("cart1.csv")[1..-1]
+		@show_cart=CSV.read("cart1.csv")
 	end
 
 
@@ -24,4 +24,10 @@ class Cart
 		puts @bill 
 		end
 	end
+
+	def remove_item(id)
+			puts 'hi'
+	end
+		
+
 end
