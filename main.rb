@@ -1,6 +1,6 @@
 require 'csv'
-require '/home/rohini/Documents/treeni/RubySession/product.rb'
-require '/home/rohini/Documents/treeni/RubySession/cart.rb'
+require 'newproduct.rb'
+require 'cart.rb'
 
 
 puts "Enter Your Name :"
