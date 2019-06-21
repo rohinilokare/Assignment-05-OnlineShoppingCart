@@ -1,4 +1,6 @@
 require 'csv'
+require 'newproduct.rb'
+
 class Cart
 
 	def initialize()
@@ -24,13 +26,9 @@ class Cart
 	  end
 	end
 
-	def get_data
-		return @cart_data
-  	end
-
 	def show_cart
 		puts '**************************************************'
-		cartdata = get_data
+		cartdata = @cart_data
 			puts 'PRODUCT_ID    PRODUCT_NAME    QUANTITY    PRICE/PRODUCT     '
 		for item in cartdata
 			puts item['PRODUCT_ID'] +"   "+ item['PRODUCT_NAME'] +"    "+item['QUANTITY'] +"    "+item['PRICE/PRODUCT']  
@@ -38,7 +36,7 @@ class Cart
 	end
 
 	def bill
-		cartdata = get_data
+		cartdata = @cart_data
 		@bill= 0.0
 		for item in cartdata
 			@bill = item['QUANTITY'].to_f * item['PRICE/PRODUCT'].to_f
@@ -48,8 +46,7 @@ class Cart
 	end
 
 	def remove_item(id)
-		cartdata = get_data
-		puts 'in remove'
+		cartdata = @cart_data
 			CSV.open("cart2.csv","wb") do |inputcsv|
 			inputcsv << ['PRODUCT_ID','PRODUCT_NAME','QUANTITY','PRICE/PRODUCT']
 			for item in cartdata
@@ -62,7 +59,9 @@ class Cart
 		end
 	end
 
+
 end
 
 cart = Cart.new
+
 
