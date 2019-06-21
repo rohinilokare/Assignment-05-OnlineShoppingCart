@@ -1,8 +1,7 @@
 require 'csv'
-require 'newproduct.rb'
+require './newproduct.rb'
 
 class Cart
-
 	def initialize()
 		csv1 = CSV.read("cart2.csv")
 		@cart_data = Array.new
@@ -51,12 +50,12 @@ class Cart
 			inputcsv << ['PRODUCT_ID','PRODUCT_NAME','QUANTITY','PRICE/PRODUCT']
 			for item in cartdata
 			  if item['PRODUCT_ID'].to_i == id.to_i
-			  	next
-				else
-					inputcsv << [item['PRODUCT_ID'],item['PRODUCT_NAME'],item['QUANTITY'],item['PRICE/PRODUCT']]
-				end
+			     next
+			  else
+			     inputcsv << [item['PRODUCT_ID'],item['PRODUCT_NAME'],item['QUANTITY'],item['PRICE/PRODUCT']]
+			  end
 			end
-		end
+			end
 	end
 
 

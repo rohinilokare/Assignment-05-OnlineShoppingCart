@@ -1,6 +1,6 @@
 require 'csv'
-require 'newproduct.rb'
-require 'cart.rb'
+require './newproduct.rb'
+require './cart.rb'
 
 puts "Enter Your Name :"
 name1 = gets

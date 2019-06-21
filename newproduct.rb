@@ -1,5 +1,5 @@
 require 'csv'
-require 'cart.rb'
+require './cart.rb'
 
 class newproduct
   def initialize()
@@ -74,10 +74,10 @@ class newproduct
 					left_quantity = aval_quntity - ordr_quantity
 			  	puts '----------------'
 					inputcsv << [item['PRODUCT_ID'],item['PRODUCT_NAME'],left_quantity,item['PRICE/PRODUCT'],item['DISCOUNT']]
-				else
+			  else
 					inputcsv << [item['PRODUCT_ID'],item['PRODUCT_NAME'],item['AVAILABLE_OUTQNTY'],item['PRICE/PRODUCT'],item['DISCOUNT']]
-				end
-			end
+			  end
+		       end
 		end
 
 		initialize
