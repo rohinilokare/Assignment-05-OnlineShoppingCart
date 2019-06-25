@@ -47,10 +47,7 @@ class Main
 						choice = choice.to_s
 						if choice == 'yes'
 						@cart.generate_bill
-						else
-							@product.view_available_products
-						end
-							
+						end					
 					end
 				
 			when 4

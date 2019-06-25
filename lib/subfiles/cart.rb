@@ -40,9 +40,14 @@ class Cart
 		bill= 0.0
 		for item in cartdata
 			bill = item['QUANTITY'].to_f * item['PRICE/PRODUCT'].to_f
-		print 'total bill for Product ID '+item['PRODUCT_ID']+', is :'
-		puts bill 
+		puts 'total bill for Product ID '+item['PRODUCT_ID']+', is :'+bill.to_s
+		bill_array.push(bill)
 		end
+		sum = 0
+		for i in bill_array
+			sum += i
+		end
+		puts 'Total Bill for order is : '+sum.to_s
 	end
 
 	def remove_item(id)  #this function for removing the item from cart
